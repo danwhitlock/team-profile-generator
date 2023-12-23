@@ -35,3 +35,121 @@ const internQuestions = [
 ]
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
+
+// Functions to get Employee Information
+
+function getManagerInfo() {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'managerName',
+            message: managerQuestions[0],
+        },
+        {
+            type: 'input',
+            name: 'managerId',
+            message: managerQuestions[1],
+        },
+        {
+            type: 'input',
+            name: 'managerEmail',
+            message: managerQuestions[2],
+        },
+        {
+            type: 'input',
+            name: 'managerOfficeNumber',
+            message: managerQuestions[3],
+        },
+    ])
+    .then((data) => {
+        let managerInfo = data;
+        console.log(managerInfo);
+        addTeamMember();
+    })
+};
+
+function getEngineerInfo() {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'engineerName',
+            message: engineerQuestions[0],
+        },
+        {
+            type: 'input',
+            name: 'engineerId',
+            message: engineerQuestions[1],
+        },
+        {
+            type: 'input',
+            name: 'engineerEmail',
+            message: engineerQuestions[2],
+        },
+        {
+            type: 'input',
+            name: 'engineerGithub',
+            message: engineerQuestions[3],
+        },
+    ])
+    .then((data) => {
+        let engineerInfo = data;
+        console.log(engineerInfo);
+        addTeamMember();
+    })
+};
+
+function getInternInfo() {
+    inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'internName',
+            message: internQuestions[0],
+        },
+        {
+            type: 'input',
+            name: 'internId',
+            message: internQuestions[1],
+        },
+        {
+            type: 'input',
+            name: 'internEmail',
+            message: internQuestions[2],
+        },
+        {
+            type: 'input',
+            name: 'internSchool',
+            message: internQuestions[3],
+        },
+    ])
+    .then((data) => {
+        let internInfo = data;
+        console.log(internInfo);
+        addTeamMember();
+    })
+};
+
+function addTeamMember() {
+    inquirer
+    .prompt([
+        {
+            type: 'list',
+            name: 'addTeamMember',
+            message: "Add next team member",
+            choices: ['Engineer', 'Intern', 'None'], 
+        }
+    ])
+    .then((data) => {
+        if (data.addTeamMember === 'Engineer') {
+            getEngineerInfo();
+        } else if (data.addTeamMember === 'Intern') {
+            getInternInfo();
+        } else if (data.addTeamMember === 'None') {
+            return;
+        };
+    })
+};
+
+getManagerInfo();
