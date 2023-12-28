@@ -9,7 +9,7 @@
    - [Installation](#Installation)
    - [Usage](#Usage)
    - [License](#License)
-   - [Contributions](#Contributions)
+   - [Contributions](#Contributing)
    - [Testing](#Testing)
    - [Questions](#Questions)
 
