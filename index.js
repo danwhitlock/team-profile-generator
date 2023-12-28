@@ -158,7 +158,8 @@ function addTeamMember() {
             getInternInfo();
         } else if (data.addTeamMember === 'None') {
             console.log("Finished adding team members")
-            return;
+            let dataForFile = render(team);
+            fs.writeFileSync(outputPath, dataForFile);
         };
     })
 };
