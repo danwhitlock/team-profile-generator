@@ -34,13 +34,11 @@ const internQuestions = [
     "Enter the Intern's school"
 ]
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
-
 // Empty variable to hold team members
 
 let team = [];
 
-// Functions to get Employee Information
+// Function to get Manager Information
 
 function getManagerInfo() {
     inquirer
@@ -68,12 +66,12 @@ function getManagerInfo() {
     ])
     .then((data) => {
         let managerInfo = data;
-        console.log(managerInfo);
         team.push(new Manager(managerInfo.managerName, managerInfo.managerId, managerInfo.managerEmail, managerInfo.managerOfficeNumber));
-        console.log(team);
         addTeamMember();
     })
 };
+
+// Function to get Engineer Information
 
 function getEngineerInfo() {
     inquirer
@@ -101,12 +99,12 @@ function getEngineerInfo() {
     ])
     .then((data) => {
         let engineerInfo = data;
-        console.log(engineerInfo);
         team.push(new Engineer(engineerInfo.engineerName, engineerInfo.engineerId, engineerInfo.engineerEmail, engineerInfo.engineerGithub));
-        console.log(team);
         addTeamMember();
     })
 };
+
+// Function to get Intern Information
 
 function getInternInfo() {
     inquirer
@@ -134,12 +132,12 @@ function getInternInfo() {
     ])
     .then((data) => {
         let internInfo = data;
-        console.log(internInfo);
         team.push(new Intern(internInfo.internName, internInfo.internId, internInfo.internEmail, internInfo.internSchool));
-        console.log(team);
         addTeamMember();
     })
 };
+
+// Function to ask for any more team members and if none, create the html team profile
 
 function addTeamMember() {
     inquirer
@@ -157,14 +155,13 @@ function addTeamMember() {
         } else if (data.addTeamMember === 'Intern') {
             getInternInfo();
         } else if (data.addTeamMember === 'None') {
-            console.log("Finished adding team members")
+            console.log("Finished adding team members - file created")
             let dataForFile = render(team);
             fs.writeFileSync(outputPath, dataForFile);
         };
     })
 };
 
-getManagerInfo();
+// Initialise the program by calling the function for the first team member 
 
-// create staff object each time, push to array, loop through array to generate html?
-// add validation?
+getManagerInfo();
